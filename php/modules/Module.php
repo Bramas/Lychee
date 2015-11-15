@@ -11,7 +11,7 @@ class Module {
 
 	protected $plugins = null;
 
-	protected function plugins($name, $location, $args) {
+	protected function plugins($name, $location, $args, $return = null) {
 
 		if (!isset($this->plugins, $name, $location, $args)) return false;
 
@@ -19,7 +19,7 @@ class Module {
 		$location = ($location===0 ? 'before' : 'after');
 
 		# Call plugins
-		$this->plugins->activate($name . ":" . $location, $args);
+		$this->plugins->activate($name . ":" . $location, $args, $return);
 
 		return true;
 

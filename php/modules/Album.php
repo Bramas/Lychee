@@ -164,7 +164,7 @@ class Album extends Module {
 		$return['num']	= $photos->num_rows;
 
 		# Call plugins
-		$this->plugins(__METHOD__, 1, func_get_args());
+		$this->plugins(__METHOD__, 1, func_get_args(), $return);
 
 		return $return;
 

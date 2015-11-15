@@ -75,13 +75,14 @@ class Plugins implements \SplSubject {
 
 	}
 
-	public function activate($action, $args) {
+	public function activate($action, $args, $return) {
 
 		if (!isset($action, $args)) return false;
 
 		# Save vars
 		$this->action	= $action;
 		$this->args		= $args;
+		$this->return	= $return;
 
 		# Notify observers
 		$this->notify();
