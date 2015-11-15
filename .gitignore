@@ -16,3 +16,4 @@ plugins/*
 
 !plugins/check/
 !plugins/displaylog/
+uploads/prettyThumb/
