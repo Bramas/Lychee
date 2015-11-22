@@ -12,6 +12,10 @@ class Admin extends Access {
 
 	public function check($fn) {
 
+		if(substr($fn, 0, 8) === 'Plugin::')
+		{
+			return $this->plugins->check(substr($fn, 8));
+		}
 		switch ($fn) {
 
 			# Album functions

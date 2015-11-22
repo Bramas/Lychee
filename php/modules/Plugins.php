@@ -47,8 +47,9 @@ class Plugins implements \SplSubject {
 
 		if (!isset($observer)) return false;
 
+		$className = get_class ($observer);
 		# Add observer
-		$this->observers[] = $observer;
+		$this->observers[$className] = $observer;
 
 		return true;
 
@@ -58,9 +59,10 @@ class Plugins implements \SplSubject {
 
 		if (!isset($observer)) return false;
 
+		$className = get_class ($observer);
+
 		# Remove observer
-		$key = array_search($observer, $this->observers, true);
-		if ($key) unset($this->observers[$key]);
+		if (in_array($className, $this->observers)) unset($this->observers[$className]);
 
 		return true;
 
@@ -89,6 +91,23 @@ class Plugins implements \SplSubject {
 
 		return true;
 
+	}
+
+	public function check($fn) {
+		try {
+			$reflectionMethod = new ReflectionMethod($fn);
+		}
+		catch(ReflectionException $e)
+		{
+			exit('Error: Called function not found!');
+		}
+
+		list($className, $functionName) = explode('::', $fn);
+		if(!array_key_exists($className, $this->observers)) {
+			exit('Error: Called function not found!');
+		}
+		echo json_encode($reflectionMethod->invoke($this->observers[$className]));
+		return true;
 	}
 
 }

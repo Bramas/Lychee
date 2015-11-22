@@ -3,16 +3,21 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "start": "browserify -t reactify -t debowerify ./index.js > ../themes/justified-theme/bundle.js"
-  },
   "author": "",
-  "license": "ISC",
-  "dependencies":{
-  	"browserify": "*",
-  	"debowerify": "*",
-  	"reactify": "*",
-  	"react": "*",
-  	"react-dom": "*"
+  "license": "MIT",
+  "scripts": {
+    "start": "browserify -t [ babelify --presets [ es2015 react ] ] -t debowerify ./index.js > ../themes/justified-theme/bundle.js"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18",
+    "babelify": "^7.2.0",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3",
+    "browserify": "*",
+    "debowerify": "*"
+  },
+  "dependencies": {
+    "react-split-pane": "^0.1.18"
   }
 }

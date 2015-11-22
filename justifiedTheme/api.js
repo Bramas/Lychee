@@ -3,7 +3,7 @@
  * @copyright   2015 by Tobias Reich
  */
 
-api = {
+let api = {
 
 	path    : 'php/api.php',
 	onError : null
