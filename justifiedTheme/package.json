@@ -18,6 +18,8 @@
     "debowerify": "*"
   },
   "dependencies": {
+    "history": "^1.13.1",
+    "react-router": "^1.0.0",
     "react-split-pane": "^0.1.18"
   }
 }

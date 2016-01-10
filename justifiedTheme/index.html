@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+	<link rel="stylesheet" href="themes/justified-theme/css/justifiedGallery.min.css" type="text/css" media="all">
+    <style type="text/css">
+        .Resizer {
+            background: #000;
+            opacity: .2;
+            z-index: 1;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            -moz-background-clip: padding;
+            -webkit-background-clip: padding;
+            background-clip: padding-box;
+        }
+
+         .Resizer:hover {
+            -webkit-transition: all 2s ease;
+            transition: all 2s ease;
+        }
+
+         .Resizer.horizontal {
+            height: 11px;
+            margin: -5px 0;
+            border-top: 5px solid rgba(255, 255, 255, 0);
+            border-bottom: 5px solid rgba(255, 255, 255, 0);
+            cursor: row-resize;
+            width: 100%;
+        }
+
+        .Resizer.horizontal:hover {
+            border-top: 5px solid rgba(0, 0, 0, 0.5);
+            border-bottom: 5px solid rgba(0, 0, 0, 0.5);
+        }
+
+        .Resizer.vertical {
+            width: 11px;
+            margin: 0 -5px;
+            border-left: 5px solid rgba(255, 255, 255, 0);
+            border-right: 5px solid rgba(255, 255, 255, 0);
+            cursor: col-resize;
+            height: 100%;
+        }
+
+        .Resizer.vertical:hover {
+            border-left: 5px solid rgba(0, 0, 0, 0.5);
+            border-right: 5px solid rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+<!--
+<div id="example" class="justified-gallery" style="width:460px">
+    <a href="http://miromannino.github.io/Justified-Gallery/photos/8083451788_552becfbc7.jpg">
+        <img alt="caption for image 1" src="http://miromannino.github.io/Justified-Gallery/photos/8083451788_552becfbc7_m.jpg" />
+    </a>
+    <a href="http://miromannino.github.io/Justified-Gallery/photos/7948632554_01f6ae6b6f.jpg" title="Just in a dream Place">
+        <img alt="caption for image 2" src="http://miromannino.github.io/Justified-Gallery/photos/7948632554_01f6ae6b6f_m.jpg" />
+    </a>
+    <a href="http://miromannino.github.io/Justified-Gallery/photos/7302459122_19fa1d8223.jpg" title="Just in a dream Place">
+        <img alt="caption for image 2" src="http://miromannino.github.io/Justified-Gallery/photos/7302459122_19fa1d8223_m.jpg" />
+    </a>
+</div>-->
+
+<div id="main-container"></div>
+<div id="loadingBar">loading</div>
+<script type="text/javascript" src="index.js"></script>
+</body>
+</html>

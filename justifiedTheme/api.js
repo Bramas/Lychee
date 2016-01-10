@@ -6,7 +6,7 @@
 let api = {
 
 	path    : 'php/api.php',
-	onError : null
+	onError : function(e){ console.log(e); }
 
 }
 

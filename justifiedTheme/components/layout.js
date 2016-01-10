@@ -1,6 +1,7 @@
 	
 import React from 'react';
 import SplitPane from 'react-split-pane';
+import LeftPane from './left-pane';
 
 class Layout extends React.Component {
     constructor(props) {
@@ -8,11 +9,12 @@ class Layout extends React.Component {
         this.displayName = 'Layout';
     }
     render() {
+    	console.log(this.props);
         return <SplitPane split="horizontal" minSize="50" defaultSize="50">
-	        <div>{this.props.headPane}</div>
+	        <div></div>
 	        <SplitPane split="vertical" minSize="100" defaultSize="300">
-	            <div>{this.props.leftPane}</div>
-	            <div>{this.props.mainPane}</div>
+	            <div><LeftPane/></div>
+	            <div>{this.props.children}</div>
 	        </SplitPane>
 	    </SplitPane>;
     }

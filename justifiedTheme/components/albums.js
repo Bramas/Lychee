@@ -2,12 +2,14 @@
 
 var React = require('react');
 var ReactDOM = require('react-dom');
+import { Link } from 'react-router'
+import api from '../api';
 
-module.exports = React.createClass({
+let AlbumsView = React.createClass({
 	renderAlbum: function(album) {
 		console.log(album);
-		return <div key={album.id} className="jg-entry" title={album.title}>
-					<img src={album.thumbs[0]}/>
+		return <div key={album.id} className="album-entry" title={album.title}>
+					<Link to={'/album/'+album.id}>{album.title}</Link>
 				</div>
 	},
 
@@ -21,4 +23,37 @@ module.exports = React.createClass({
 	render: function() {
 		return <div>{this.props.albums.map(this.renderAlbum)}</div>;
 	}
+})
+
+
+module.exports = React.createClass({
+
+  getInitialState () {
+    return {
+      albums: []
+    }
+  },
+
+  componentDidMount () {
+    // fetch data initially in scenario 2 from above
+    this.fetchInvoice()
+  },
+
+  componentDidUpdate (prevProps) {
+   
+  },
+
+  componentWillUnmount () {
+
+  },
+  onDataReceived(data) {
+  	this.setState({albums: data.albums})
+  },
+  fetchInvoice () {
+    api.post('Album::getAll', {}, this.onDataReceived);
+  },
+  render () {
+    return <AlbumsView albums={this.state.albums}/>
+  }
+
 })

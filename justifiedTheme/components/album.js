@@ -2,23 +2,75 @@
 
 var React = require('react');
 var ReactDOM = require('react-dom');
+import { Link } from 'react-router'
+import api from '../api';
 
-module.exports = React.createClass({
+var $ = require('jquery');
+window.$ = window.jQuery = $;
+var JustifiedGallery = require('justifiedGallery');
+
+let AlbumView = React.createClass({
 	renderPhoto: function(photo) {
-		console.log(photo);
-		return <div key={photo.id} className="jg-entry" title={photo.title}>
+		return  <div key={photo.id} className="jg-entry" title={photo.title}>
 					<img src={photo.prettyThumbUrl} />
 				</div>
 	},
 
 	componentDidUpdate: function() {
-		$(ReactDOM.findDOMNode(this)).justifiedGallery();
+		$(ReactDOM.findDOMNode(this.refs['gallery'])).justifiedGallery();
 	},
 	componentDidMount: function() {
 		this.componentDidUpdate();
 	},
 
 	render: function() {
-		return <div>{this.props.photos.map(this.renderPhoto)}</div>;
+		return <div><div ref="gallery">{this.props.photos.map(this.renderPhoto)}</div><Link to={'/albums'}>retour</Link></div>;
 	}
+})
+
+
+module.exports = React.createClass({
+
+  getInitialState () {
+    return {
+      photos: []
+    }
+  },
+
+  componentDidMount () {
+    // fetch data initially in scenario 2 from above
+    this.fetchInvoice()
+  },
+
+  componentDidUpdate (prevProps) {
+	let oldId = prevProps.params.albumId
+    let newId = this.props.params.albumId
+    if (newId !== oldId)
+      this.fetchInvoice()
+  },
+
+  componentWillUnmount () {
+
+  },
+  onDataReceived(data) {
+		console.log(data);
+		let photos = Object.keys(data.content).map(function (key) {return data.content[key]});
+		this.setState({photos: photos});
+		/*ReactDom.render(<Layout 
+			leftPane={<TreeTimeline data={timeline} onToggle={handleTreeClick}/>}
+			mainPane={<Album photos={photos} />} />, document.getElementById('main-container'))*/
+	},
+	fetchInvoice () {	
+		var params = {
+		albumID: this.props.params.albumId,
+		password: null
+		}
+		api.post('Album::get', params, this.onDataReceived);
+
+	},
+
+	render () {
+		return <AlbumView photos={this.state.photos}/>
+	}
+
 })

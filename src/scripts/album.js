@@ -30,8 +30,8 @@ album.getID = function() {
 
 }
 
-album.load = function(albumID, refresh = false) {
-
+album.load = function(albumID, refresh = false, passwordValue = null) {
+	
 	password.get(albumID, function() {
 
 		if (refresh===false) lychee.animate('.content', 'contentZoomOut')
@@ -90,7 +90,7 @@ album.load = function(albumID, refresh = false) {
 
 		})
 
-	})
+	}, passwordValue)
 
 }
 
